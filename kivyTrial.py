@@ -17,15 +17,15 @@ class IntroPage(GridLayout):
     
 
         self.add_widget(Label(text="Welcome to Advance Calc", font_name = "Times New Roman"))
-        self.calc_button = Button(text="Press to use Calculator", background_normal="",background_color = [228/255,132/255,0,1])
+        self.calc_button = Button(text="Press to use Calculator", background_normal="",background_color = [228/255,132/255,0,1], font_name = "Times New Roman", color = [0,0,0,1])
         self.calc_button.bind(on_press=self.calc_move)
         self.add_widget(self.calc_button)
 
-        self.convert_button = Button(text="Press to use Covertor", background_normal="",background_color = [96/255,130/255,182/255,1]) 
+        self.convert_button = Button(text="Press to use Covertor", background_normal="",background_color = [96/255,130/255,182/255,1], font_name = "Times New Roman", color = [0,0,0,1]) 
         #self.wiki_button.bind(on_press=self.wiki_choice)
         self.add_widget(self.convert_button)
 
-        self.advance_button = Button(text="Press to use Advance calc", background_normal="",background_color = [115/255, 134/255, 120/255, 1]) 
+        self.advance_button = Button(text="Press to use Advance calc", background_normal="",background_color = [115/255, 134/255, 120/255, 1], font_name = "Times New Roman", color = [0,0,0,1]) 
         #self.wiki_button.bind(on_press=self.wiki_choice)
         self.add_widget(self.advance_button)
 
@@ -36,69 +36,79 @@ class IntroPage(GridLayout):
 #intialising the calculator page that will appear after the clicking the 
 #calculator button.
 class CalcPage(GridLayout):
+
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
         self.rows = 6
+        self.padding = 10
+        self.spacing = 10
          
         #adding the text input box to enter the text 
         row1 = BoxLayout(orientation = "horizontal")
-        entryText = TextInput(multiline="false")
-        row1.add_widget(entryText)
+        self.entryText = TextInput(multiline="false")
+        row1.add_widget(self.entryText)
         self.add_widget(row1)
 
         #adding the first row of the button
         row2 = BoxLayout(orientation = "horizontal", spacing = "10")
-        btn1 = Button(text="7")
-        btn2 = Button(text="8")
-        btn3 = Button(text="9")
-        btn4 = Button(text="+")
-        row2.add_widget(btn1)
-        row2.add_widget(btn2)
-        row2.add_widget(btn3)
-        row2.add_widget(btn4)
+        self.btn1 = Button(text="7", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman", color = [0,0,0,1])
+        self.btn1.bind(on_press=self.num_7)
+        self.btn2 = Button(text="8", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman", color = [0,0,0,1])
+        self.btn3 = Button(text="9", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman", color = [0,0,0,1])
+        self.btn4 = Button(text="+", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman", color = [0,0,0,1])
+        row2.add_widget(self.btn1)
+        row2.add_widget(self.btn2)
+        row2.add_widget(self.btn3)
+        row2.add_widget(self.btn4)
         self.add_widget(row2)
 
         #adding the second row of the button
         row3 = BoxLayout(orientation = "horizontal", spacing = "10")
-        btn5 = Button(text="4")
-        btn6 = Button(text="5")
-        btn7 = Button(text="6")
-        btn8 = Button(text="-")
-        row3.add_widget(btn5)
-        row3.add_widget(btn6)
-        row3.add_widget(btn7)
-        row3.add_widget(btn8)
+        self.btn5 = Button(text="4", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman", color = [0,0,0,1])
+        self.btn6 = Button(text="5", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman", color = [0,0,0,1])
+        self.btn7 = Button(text="6", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman", color = [0,0,0,1])
+        self.btn8 = Button(text="-", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman", color = [0,0,0,1])
+        row3.add_widget(self.btn5)
+        row3.add_widget(self.btn6)
+        row3.add_widget(self.btn7)
+        row3.add_widget(self.btn8)
         self.add_widget(row3)
 
         #adding the third row of the button
         row4 = BoxLayout(orientation = "horizontal", spacing = "10")
-        btn9 = Button(text="1")
-        btn10 = Button(text="2")
-        btn11 = Button(text="3")
-        btn12 = Button(text="*")
-        row4.add_widget(btn9)
-        row4.add_widget(btn10)
-        row4.add_widget(btn11)
-        row4.add_widget(btn12)
+        self.btn9 = Button(text="1", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman", color = [0,0,0,1])
+        self.btn10 = Button(text="2", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman", color = [0,0,0,1])
+        self.btn11 = Button(text="3", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman", color = [0,0,0,1])
+        self.btn12 = Button(text="*", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman", color = [0,0,0,1])
+        row4.add_widget(self.btn9)
+        row4.add_widget(self.btn10)
+        row4.add_widget(self.btn11)
+        row4.add_widget(self.btn12)
         self.add_widget(row4)
 
         #adding the fourth row of the button
-        row2 = BoxLayout(orientation = "horizontal", spacing = "10")
-        btn1 = Button(text="7")
-        btn2 = Button(text="8")
-        btn3 = Button(text="9")
-        btn4 = Button(text="+")
-        row2.add_widget(btn1)
-        row2.add_widget(btn2)
-        row2.add_widget(btn3)
-        row2.add_widget(btn4)
-        self.add_widget(row2)
+        row5 = BoxLayout(orientation = "horizontal", spacing = "10")
+        self.btn13 = Button(text="AC", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman", color = [0,0,0,1])
+        self.btn14 = Button(text="0", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman", color = [0,0,0,1])
+        self.btn15 = Button(text="=", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman", color = [0,0,0,1])
+        self.btn16 = Button(text="/", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman", color = [0,0,0,1])
+        row5.add_widget(self.btn13)
+        row5.add_widget(self.btn14)
+        row5.add_widget(self.btn15)
+        row5.add_widget(self.btn16)
+        self.add_widget(row5)
 
+        #adding the final row
+        row6 = BoxLayout(orientation = "horizontal", spacing = "10")
+        self.btn17 = Button(text = "Back", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman",color = [0,0,0,1] )
+        row6.add_widget(self.btn17)
+        self.add_widget(row6)
 
-
-
-
+    def num_7(self, instance):
+        self.entryText.text += self.btn1.text
+    def num_8(self, instance):
+        self.entryText.text += self.btn1.text
         
 
 
