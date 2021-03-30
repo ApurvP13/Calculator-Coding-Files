@@ -53,10 +53,13 @@ class CalcPage(GridLayout):
         #adding the first row of the button
         row2 = BoxLayout(orientation = "horizontal", spacing = "10")
         self.btn1 = Button(text="7", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman", color = [0,0,0,1])
-        self.btn1.bind(on_press=self.num_7)
+        self.btn1.bind(on_press = self.num_7)
         self.btn2 = Button(text="8", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman", color = [0,0,0,1])
+        self.btn2.bind(on_press=self.num_8)
         self.btn3 = Button(text="9", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman", color = [0,0,0,1])
+        self.btn3.bind(on_press=self.num_9)
         self.btn4 = Button(text="+", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman", color = [0,0,0,1])
+        self.btn4.bind(on_press = self.plus)
         row2.add_widget(self.btn1)
         row2.add_widget(self.btn2)
         row2.add_widget(self.btn3)
@@ -66,9 +69,13 @@ class CalcPage(GridLayout):
         #adding the second row of the button
         row3 = BoxLayout(orientation = "horizontal", spacing = "10")
         self.btn5 = Button(text="4", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman", color = [0,0,0,1])
+        self.btn5.bind(on_press = self.num_4)
         self.btn6 = Button(text="5", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman", color = [0,0,0,1])
+        self.btn6.bind(on_press = self.num_5)
         self.btn7 = Button(text="6", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman", color = [0,0,0,1])
+        self.btn7.bind(on_press = self.num_6)
         self.btn8 = Button(text="-", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman", color = [0,0,0,1])
+        self.btn8.bind(on_press = self.minus)
         row3.add_widget(self.btn5)
         row3.add_widget(self.btn6)
         row3.add_widget(self.btn7)
@@ -78,9 +85,13 @@ class CalcPage(GridLayout):
         #adding the third row of the button
         row4 = BoxLayout(orientation = "horizontal", spacing = "10")
         self.btn9 = Button(text="1", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman", color = [0,0,0,1])
+        self.btn9.bind(on_press = self.num_1)
         self.btn10 = Button(text="2", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman", color = [0,0,0,1])
+        self.btn10.bind(on_press = self.num_2)
         self.btn11 = Button(text="3", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman", color = [0,0,0,1])
+        self.btn11.bind(on_press = self.num_3)
         self.btn12 = Button(text="*", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman", color = [0,0,0,1])
+        self.btn12.bind(on_press = self.mult)
         row4.add_widget(self.btn9)
         row4.add_widget(self.btn10)
         row4.add_widget(self.btn11)
@@ -90,9 +101,13 @@ class CalcPage(GridLayout):
         #adding the fourth row of the button
         row5 = BoxLayout(orientation = "horizontal", spacing = "10")
         self.btn13 = Button(text="AC", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman", color = [0,0,0,1])
+        self.btn13.bind(on_press = self.AC)
         self.btn14 = Button(text="0", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman", color = [0,0,0,1])
+        self.btn14.bind(on_press = self.num_0)
         self.btn15 = Button(text="=", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman", color = [0,0,0,1])
+        self.btn15.bind(on_press = self.equals)
         self.btn16 = Button(text="/", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman", color = [0,0,0,1])
+        self.btn16.bind(on_press = self.div)
         row5.add_widget(self.btn13)
         row5.add_widget(self.btn14)
         row5.add_widget(self.btn15)
@@ -102,14 +117,47 @@ class CalcPage(GridLayout):
         #adding the final row
         row6 = BoxLayout(orientation = "horizontal", spacing = "10")
         self.btn17 = Button(text = "Back", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman",color = [0,0,0,1] )
+        self.btn17.bind(on_press=self.back)
         row6.add_widget(self.btn17)
         self.add_widget(row6)
 
     def num_7(self, instance):
         self.entryText.text += self.btn1.text
     def num_8(self, instance):
-        self.entryText.text += self.btn1.text
-        
+        self.entryText.text += self.btn2.text
+    def num_9(self, instance):
+        self.entryText.text += self.btn3.text
+    def plus(self, instance):
+        self.entryText.text += self.btn4.text
+    def num_4(self, instance):
+        self.entryText.text += self.btn5.text
+    def num_5(self, instance):
+        self.entryText.text += self.btn6.text
+    def num_6(self, instance):
+        self.entryText.text += self.btn7.text
+    def minus(self, instance):
+        self.entryText.text += self.btn8.text
+    def num_1(self, instance):
+        self.entryText.text += self.btn9.text
+    def num_2(self, instance):
+        self.entryText.text += self.btn10.text
+    def num_3(self, instance):
+        self.entryText.text += self.btn11.text
+    def mult(self, instance):
+        self.entryText.text += self.btn12.text
+    def AC(self, instance):
+        self.entryText.text = ""
+    def num_0(self, instance):
+        self.entryText.text += self.btn14.text
+    def equals(self, instance):
+        try:
+            self.entryText.text = str(eval(self.entryText.text))
+        except:
+            self.entryText.text = "Invalid! Press AC"
+    def div(self, instance):
+        self.entryText.text += self.btn16.text
+    def back(self, instance):
+        calc_app.screenmanager.current = "Intro"
 
 
 
