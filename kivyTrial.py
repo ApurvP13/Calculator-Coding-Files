@@ -121,6 +121,7 @@ class CalcPage(GridLayout):
         row6.add_widget(self.btn17)
         self.add_widget(row6)
 
+    #adding the functions to make the button and everything work
     def num_7(self, instance):
         self.entryText.text += self.btn1.text
     def num_8(self, instance):
