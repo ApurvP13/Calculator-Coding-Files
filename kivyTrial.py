@@ -22,7 +22,7 @@ class IntroPage(GridLayout):
         self.add_widget(self.calc_button)
 
         self.convert_button = Button(text="Press to use Covertor", background_normal="",background_color = [96/255,130/255,182/255,1], font_name = "Times New Roman", color = [0,0,0,1], font_size =40) 
-        #self.wiki_button.bind(on_press=self.wiki_choice)
+        self.convert_button.bind(on_press=self.convt_move)
         self.add_widget(self.convert_button)
 
         self.advance_button = Button(text="Press to use Advance calc", background_normal="",background_color = [115/255, 134/255, 120/255, 1], font_name = "Times New Roman", color = [0,0,0,1], font_size =40) 
@@ -31,6 +31,10 @@ class IntroPage(GridLayout):
 
     def calc_move(self, instance):
         calc_app.screenmanager.current = "Calc"
+
+    def convt_move(self, instance):
+        calc_app.screenmanager.current = "Convt"
+
         
 
 #intialising the calculator page that will appear after the clicking the 
@@ -160,6 +164,23 @@ class CalcPage(GridLayout):
     def back(self, instance):
         calc_app.screenmanager.current = "Intro"
 
+#intialising the convertor page that will appear after clicking
+#convert button
+class ConvertPage(GridLayout):
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+        self.rows = 3
+        self.padding = 10
+        self.spacing = 10
+
+         #adding the text input box to enter the text 
+        row1 = BoxLayout(orientation = "horizontal")
+        self.entryText = TextInput(multiline="false", font_size = 50)
+        row1.add_widget(self.entryText)
+        self.add_widget(row1)
+
 
 
 class CalcApp(App):
@@ -175,6 +196,12 @@ class CalcApp(App):
         screen = Screen(name = "Calc")
         screen.add_widget(self.calc_page)
         self.screenmanager.add_widget(screen)
+
+        self.convt_page = ConvertPage()
+        screen = Screen(name = "Convt")
+        screen.add_widget(self.convt_page)
+        self.screenmanager.add_widget(screen)
+
 
 
         return self.screenmanager
