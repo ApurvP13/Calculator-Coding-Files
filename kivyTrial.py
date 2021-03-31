@@ -16,16 +16,16 @@ class IntroPage(GridLayout):
         self.rows = 4
     
 
-        self.add_widget(Label(text="Welcome to Advance Calc", font_name = "Times New Roman"))
-        self.calc_button = Button(text="Press to use Calculator", background_normal="",background_color = [228/255,132/255,0,1], font_name = "Times New Roman", color = [0,0,0,1])
+        self.add_widget(Label(text="Welcome to Advance Calc", font_name = "Times New Roman", font_size = 60))
+        self.calc_button = Button(text="Press to use Calculator", background_normal="",background_color = [228/255,132/255,0,1], font_name = "Times New Roman", color = [0,0,0,1], font_size =40)
         self.calc_button.bind(on_press=self.calc_move)
         self.add_widget(self.calc_button)
 
-        self.convert_button = Button(text="Press to use Covertor", background_normal="",background_color = [96/255,130/255,182/255,1], font_name = "Times New Roman", color = [0,0,0,1]) 
+        self.convert_button = Button(text="Press to use Covertor", background_normal="",background_color = [96/255,130/255,182/255,1], font_name = "Times New Roman", color = [0,0,0,1], font_size =40) 
         #self.wiki_button.bind(on_press=self.wiki_choice)
         self.add_widget(self.convert_button)
 
-        self.advance_button = Button(text="Press to use Advance calc", background_normal="",background_color = [115/255, 134/255, 120/255, 1], font_name = "Times New Roman", color = [0,0,0,1]) 
+        self.advance_button = Button(text="Press to use Advance calc", background_normal="",background_color = [115/255, 134/255, 120/255, 1], font_name = "Times New Roman", color = [0,0,0,1], font_size =40) 
         #self.wiki_button.bind(on_press=self.wiki_choice)
         self.add_widget(self.advance_button)
 
@@ -46,19 +46,19 @@ class CalcPage(GridLayout):
          
         #adding the text input box to enter the text 
         row1 = BoxLayout(orientation = "horizontal")
-        self.entryText = TextInput(multiline="false")
+        self.entryText = TextInput(multiline="false", font_size = 50)
         row1.add_widget(self.entryText)
         self.add_widget(row1)
 
         #adding the first row of the button
         row2 = BoxLayout(orientation = "horizontal", spacing = "10")
-        self.btn1 = Button(text="7", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman", color = [0,0,0,1])
+        self.btn1 = Button(text="7", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman", color = [0,0,0,1], font_size =40)
         self.btn1.bind(on_press = self.num_7)
-        self.btn2 = Button(text="8", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman", color = [0,0,0,1])
+        self.btn2 = Button(text="8", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman", color = [0,0,0,1], font_size =40)
         self.btn2.bind(on_press=self.num_8)
-        self.btn3 = Button(text="9", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman", color = [0,0,0,1])
+        self.btn3 = Button(text="9", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman", color = [0,0,0,1], font_size =40)
         self.btn3.bind(on_press=self.num_9)
-        self.btn4 = Button(text="+", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman", color = [0,0,0,1])
+        self.btn4 = Button(text="+", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman", color = [0,0,0,1], font_size =40)
         self.btn4.bind(on_press = self.plus)
         row2.add_widget(self.btn1)
         row2.add_widget(self.btn2)
@@ -68,13 +68,13 @@ class CalcPage(GridLayout):
 
         #adding the second row of the button
         row3 = BoxLayout(orientation = "horizontal", spacing = "10")
-        self.btn5 = Button(text="4", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman", color = [0,0,0,1])
+        self.btn5 = Button(text="4", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman", color = [0,0,0,1], font_size =40)
         self.btn5.bind(on_press = self.num_4)
-        self.btn6 = Button(text="5", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman", color = [0,0,0,1])
+        self.btn6 = Button(text="5", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman", color = [0,0,0,1], font_size =40)
         self.btn6.bind(on_press = self.num_5)
-        self.btn7 = Button(text="6", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman", color = [0,0,0,1])
+        self.btn7 = Button(text="6", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman", color = [0,0,0,1], font_size =40)
         self.btn7.bind(on_press = self.num_6)
-        self.btn8 = Button(text="-", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman", color = [0,0,0,1])
+        self.btn8 = Button(text="-", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman", color = [0,0,0,1], font_size =40)
         self.btn8.bind(on_press = self.minus)
         row3.add_widget(self.btn5)
         row3.add_widget(self.btn6)
@@ -84,13 +84,13 @@ class CalcPage(GridLayout):
 
         #adding the third row of the button
         row4 = BoxLayout(orientation = "horizontal", spacing = "10")
-        self.btn9 = Button(text="1", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman", color = [0,0,0,1])
+        self.btn9 = Button(text="1", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman", color = [0,0,0,1], font_size =40)
         self.btn9.bind(on_press = self.num_1)
-        self.btn10 = Button(text="2", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman", color = [0,0,0,1])
+        self.btn10 = Button(text="2", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman", color = [0,0,0,1], font_size =40)
         self.btn10.bind(on_press = self.num_2)
-        self.btn11 = Button(text="3", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman", color = [0,0,0,1])
+        self.btn11 = Button(text="3", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman", color = [0,0,0,1], font_size =40)
         self.btn11.bind(on_press = self.num_3)
-        self.btn12 = Button(text="*", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman", color = [0,0,0,1])
+        self.btn12 = Button(text="*", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman", color = [0,0,0,1], font_size =40)
         self.btn12.bind(on_press = self.mult)
         row4.add_widget(self.btn9)
         row4.add_widget(self.btn10)
@@ -100,13 +100,13 @@ class CalcPage(GridLayout):
 
         #adding the fourth row of the button
         row5 = BoxLayout(orientation = "horizontal", spacing = "10")
-        self.btn13 = Button(text="AC", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman", color = [0,0,0,1])
+        self.btn13 = Button(text="AC", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman", color = [0,0,0,1], font_size =40)
         self.btn13.bind(on_press = self.AC)
-        self.btn14 = Button(text="0", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman", color = [0,0,0,1])
+        self.btn14 = Button(text="0", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman", color = [0,0,0,1], font_size =40)
         self.btn14.bind(on_press = self.num_0)
-        self.btn15 = Button(text="=", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman", color = [0,0,0,1])
+        self.btn15 = Button(text="=", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman", color = [0,0,0,1], font_size =40)
         self.btn15.bind(on_press = self.equals)
-        self.btn16 = Button(text="/", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman", color = [0,0,0,1])
+        self.btn16 = Button(text="/", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman", color = [0,0,0,1], font_size =40)
         self.btn16.bind(on_press = self.div)
         row5.add_widget(self.btn13)
         row5.add_widget(self.btn14)
@@ -116,7 +116,7 @@ class CalcPage(GridLayout):
 
         #adding the final row
         row6 = BoxLayout(orientation = "horizontal", spacing = "10")
-        self.btn17 = Button(text = "Back", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman",color = [0,0,0,1] )
+        self.btn17 = Button(text = "Back", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman",color = [0,0,0,1], font_size =40 )
         self.btn17.bind(on_press=self.back)
         row6.add_widget(self.btn17)
         self.add_widget(row6)
