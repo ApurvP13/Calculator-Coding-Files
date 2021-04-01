@@ -181,6 +181,10 @@ class ConvertPage(GridLayout):
         row1.add_widget(self.entryText)
         self.add_widget(row1)
 
+        row2 = BoxLayout(orientation = "horizontal")
+        self.LabelFrom = Label(text="From", font_name = "Times New Roman", font_size = 60)
+        
+
 
 
 class CalcApp(App):
