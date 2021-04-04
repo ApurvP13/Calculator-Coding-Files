@@ -7,6 +7,7 @@ from kivy.uix.screenmanager import Screen, ScreenManager
 from kivy.uix.button import Button
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.textinput import TextInput
+import wolframalpha as wolfaplha
 
 class IntroPage(GridLayout):
     
@@ -26,7 +27,7 @@ class IntroPage(GridLayout):
         self.add_widget(self.convert_button)
 
         self.advance_button = Button(text="Press to use Advance calc", background_normal="",background_color = [115/255, 134/255, 120/255, 1], font_name = "Times New Roman", color = [0,0,0,1], font_size =40) 
-        #self.wiki_button.bind(on_press=self.wiki_choice)
+        self.advance_button.bind(on_press=self.advCalc_move)
         self.add_widget(self.advance_button)
 
     def calc_move(self, instance):
@@ -34,6 +35,9 @@ class IntroPage(GridLayout):
 
     def convt_move(self, instance):
         calc_app.screenmanager.current = "Convt"
+
+    def advCalc_move(self, instance):
+        calc_app.screenmanager.current = "AdvCalc"
 
         
 
@@ -185,6 +189,46 @@ class ConvertPage(GridLayout):
         self.LabelFrom = Label(text="From", font_name = "Times New Roman", font_size = 60)
         
 
+#intialising the Advance Calc page that will appear after clicking
+#advance calc button
+class AdvCalcPage(GridLayout):
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+        self.rows = 3
+        self.padding = 10
+        self.spacing = 10
+
+        #adding the text input box to enter the text
+        row1 = BoxLayout(orientation = "horizontal")
+        self.inputText = TextInput(multiline="false", font_size = 50)
+        row1.add_widget(self.inputText)
+        self.add_widget(row1)
+
+        #adding the button for retreving the result
+        row2 = BoxLayout(orientation = "horizontal")
+        self.btn1 = Button(text="Result", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman", color = [0,0,0,1], font_size =40)
+        self.btn1.bind(on_press=self.WolfResult)
+        row2.add_widget(self.btn1)
+        self.add_widget(row2)
+
+        #adding the result label
+        row3 = BoxLayout(orientation = "horizontal")
+        self.wolfResult = Label(text="Results will appear here", font_name = "Times New Roman", font_size = 60)
+        row3.add_widget(self.wolfResult)
+        self.add_widget(row3)
+    
+    def WolfResult(self, instance):
+        app_id = 'GK5TVX-Q3KEU8J4HQ'
+        client = wolfaplha.Client(app_id)
+        result = client.query(self.inputText.text)
+        try:
+            answer = next(result.results).text
+            self.wolfResult.text = answer
+        except:
+            answer = "This question is not valid"
+            self.wolfResult.text = answer
 
 
 class CalcApp(App):
@@ -204,6 +248,11 @@ class CalcApp(App):
         self.convt_page = ConvertPage()
         screen = Screen(name = "Convt")
         screen.add_widget(self.convt_page)
+        self.screenmanager.add_widget(screen)
+
+        self.advCalc_page = AdvCalcPage()
+        screen = Screen(name = "AdvCalc")
+        screen.add_widget(self.advCalc_page)
         self.screenmanager.add_widget(screen)
 
 
