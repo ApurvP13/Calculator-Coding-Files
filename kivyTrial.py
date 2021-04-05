@@ -9,6 +9,17 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.textinput import TextInput
 import wolframalpha as wolfaplha
 
+import ssl
+
+try:
+    _create_unverified_https_context = ssl._create_unverified_context
+except AttributeError:
+    # Legacy Python that doesn't verify HTTPS certificates by default
+    pass
+else:
+    # Handle target environment that doesn't support HTTPS verification
+    ssl._create_default_https_context = _create_unverified_https_context
+
 class IntroPage(GridLayout):
     
     def __init__(self, **kwargs):
@@ -196,7 +207,7 @@ class AdvCalcPage(GridLayout):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
-        self.rows = 3
+        self.rows = 4
         self.padding = 10
         self.spacing = 10
 
@@ -215,9 +226,16 @@ class AdvCalcPage(GridLayout):
 
         #adding the result label
         row3 = BoxLayout(orientation = "horizontal")
-        self.wolfResult = Label(text="Results will appear here", font_name = "Times New Roman", font_size = 60)
+        self.wolfResult = Label(text="Results will appear here", font_name = "Times New Roman", font_size = 35)
         row3.add_widget(self.wolfResult)
         self.add_widget(row3)
+
+        #adding the final row
+        row4 = BoxLayout(orientation = "horizontal", spacing = "10")
+        self.backBtn = Button(text = "Back", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman",color = [0,0,0,1], font_size =40 )
+        self.backBtn.bind(on_press=self.back2)
+        row4.add_widget(self.backBtn)
+        self.add_widget(row4)
     
     def WolfResult(self, instance):
         app_id = 'GK5TVX-Q3KEU8J4HQ'
@@ -229,6 +247,11 @@ class AdvCalcPage(GridLayout):
         except:
             answer = "This question is not valid"
             self.wolfResult.text = answer
+    
+    def back2(self, instance):
+        self.wolfResult.text = "Results will appear here"
+        self.inputText.text = ""
+        calc_app.screenmanager.current = "Intro"
 
 
 class CalcApp(App):
