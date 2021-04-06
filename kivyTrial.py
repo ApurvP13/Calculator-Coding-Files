@@ -197,6 +197,8 @@ class ConvertPage(GridLayout):
 
         row2 = BoxLayout(orientation = "horizontal")
         self.LabelFrom = Label(text="From", font_name = "Times New Roman", font_size = 60)
+        row2.add_widget(self.LabelFrom)
+        self.add_widget(row2)
         
 
 #intialising the Advance Calc page that will appear after clicking
