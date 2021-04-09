@@ -8,6 +8,7 @@ from kivy.uix.button import Button
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.textinput import TextInput
 import wolframalpha as wolfaplha
+from kivy.uix.dropdown import DropDown
 import ssl
 
 try:
@@ -197,7 +198,15 @@ class ConvertPage(GridLayout):
 
         row2 = BoxLayout(orientation = "horizontal")
         self.LabelFrom = Label(text="From", font_name = "Times New Roman", font_size = 60)
+        self.FromUnits = DropDown()
+        self.fromBtn = Button(text = "From", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman",color = [0,0,0,1], font_size =40 ,size_hint_y=None, height=44)
+        self.fromBtn.bind(on_release=self.FromUnits.open)
+        self.unit1 = Button(text = "1", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman",color = [0,0,0,1], font_size =40 ,size_hint_y=None, height=44) 
+        self.unit1.bind(on_release=lambda btn: self.FromUnits.select(self.unit1.text))
+        self.FromUnits.add_widget(self.unit1)
+        self.FromUnits.bind(on_select=lambda instance, x: setattr(self.fromBtn, 'text', x))
         row2.add_widget(self.LabelFrom)
+        row2.add_widget(self.fromBtn)
         self.add_widget(row2)
         
 

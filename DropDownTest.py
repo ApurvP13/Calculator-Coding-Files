@@ -39,6 +39,8 @@ btn.bind(on_release=lambda btn: dropdown.select(btn.text))
     # then add the button inside the dropdown
 dropdown.add_widget(btn)
 
+btn3 = Button(text = "click")
+
 
 
 
@@ -55,4 +57,12 @@ mainbutton.bind(on_release=dropdown.open)
 # assign the data to the button text.
 dropdown.bind(on_select=lambda instance, x: setattr(mainbutton, 'text', x))
 
+btn3 = Button(text = "click")
+
+def printtext(self,instance):
+    print(mainbutton.text)
+
+btn3.bind(on_press=printtext)
+
 runTouchApp(mainbutton)
+runTouchApp(btn3)
