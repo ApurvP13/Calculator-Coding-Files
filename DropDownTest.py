@@ -57,12 +57,12 @@ mainbutton.bind(on_release=dropdown.open)
 # assign the data to the button text.
 dropdown.bind(on_select=lambda instance, x: setattr(mainbutton, 'text', x))
 
-btn3 = Button(text = "click")
+# btn3 = Button(text = "click")
 
-def printtext(self,instance):
-    print(mainbutton.text)
+# def printtext(self,instance):
+#     print(mainbutton.text)
 
-btn3.bind(on_press=printtext)
+# btn3.bind(on_press=printtext)
 
 runTouchApp(mainbutton)
-runTouchApp(btn3)
+#runTouchApp(btn3)

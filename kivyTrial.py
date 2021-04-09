@@ -9,6 +9,7 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.textinput import TextInput
 import wolframalpha as wolfaplha
 from kivy.uix.dropdown import DropDown
+from kivy.uix.anchorlayout import AnchorLayout
 import ssl
 
 try:
@@ -195,20 +196,46 @@ class ConvertPage(GridLayout):
         self.entryText = TextInput(multiline="false", font_size = 50)
         row1.add_widget(self.entryText)
         self.add_widget(row1)
-
+#adding a vertical boxlayout
         row2 = BoxLayout(orientation = "horizontal")
         self.LabelFrom = Label(text="From", font_name = "Times New Roman", font_size = 60)
+#adding a anchor layout to anchor the dropdown button to the top.        
+        row2_1 = AnchorLayout(anchor_y="top")
+#adding a from units drop down
         self.FromUnits = DropDown()
-        self.fromBtn = Button(text = "From", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman",color = [0,0,0,1], font_size =40 ,size_hint_y=None, height=44)
+#adding the main button for the drop down
+        self.fromBtn = Button(text = "From", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman",color = [0,0,0,1], font_size =40,size_hint_y=None, height=40)
         self.fromBtn.bind(on_release=self.FromUnits.open)
-        self.unit1 = Button(text = "1", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman",color = [0,0,0,1], font_size =40 ,size_hint_y=None, height=44) 
+#adding the first unit
+        self.unit1 = Button(text = "1", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman",color = [0,0,0,1], font_size =40 ,size_hint_y=None, height=30) 
         self.unit1.bind(on_release=lambda btn: self.FromUnits.select(self.unit1.text))
+#adding the second uni
+        self.unit2 = Button(text = "2", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman",color = [0,0,0,1], font_size =40 ,size_hint_y=None, height=30) 
+        self.unit2.bind(on_release=lambda btn: self.FromUnits.select(self.unit2.text))
+#adding the buttons dropdown
         self.FromUnits.add_widget(self.unit1)
+        self.FromUnits.add_widget(self.unit2)
         self.FromUnits.bind(on_select=lambda instance, x: setattr(self.fromBtn, 'text', x))
+
+#adding the widgets to the layouts.
+        row2_1.add_widget(self.fromBtn)
         row2.add_widget(self.LabelFrom)
-        row2.add_widget(self.fromBtn)
-        self.add_widget(row2)
         
+        row2.add_widget(row2_1)
+        self.add_widget(row2)
+
+
+
+
+        #adding the final row
+        row4 = BoxLayout(orientation = "horizontal", spacing = "10")
+        self.backBtn = Button(text = "Back", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman",color = [0,0,0,1], font_size =40 )
+        self.backBtn.bind(on_press=self.back2)
+        row4.add_widget(self.backBtn)
+        self.add_widget(row4)
+    
+    def back2(self, instance):
+        calc_app.screenmanager.current = "Intro"    
 
 #intialising the Advance Calc page that will appear after clicking
 #advance calc button
