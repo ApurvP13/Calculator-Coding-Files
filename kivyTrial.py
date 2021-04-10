@@ -187,7 +187,7 @@ class ConvertPage(GridLayout):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
-        self.rows = 3
+        self.rows = 4
         self.padding = 10
         self.spacing = 10
 
@@ -209,26 +209,58 @@ class ConvertPage(GridLayout):
 #adding the first unit
         self.unit1 = Button(text = "1", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman",color = [0,0,0,1], font_size =40 ,size_hint_y=None, height=30) 
         self.unit1.bind(on_release=lambda btn: self.FromUnits.select(self.unit1.text))
-#adding the second uni
+#adding the second unit
         self.unit2 = Button(text = "2", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman",color = [0,0,0,1], font_size =40 ,size_hint_y=None, height=30) 
         self.unit2.bind(on_release=lambda btn: self.FromUnits.select(self.unit2.text))
 #adding the buttons dropdown
         self.FromUnits.add_widget(self.unit1)
         self.FromUnits.add_widget(self.unit2)
         self.FromUnits.bind(on_select=lambda instance, x: setattr(self.fromBtn, 'text', x))
+#adding the to label
+        self.LabelTo = Label(text="To", font_name = "Times New Roman", font_size = 60)
+
+#adding a anchor layout to anchor the dropdown button to the top.        
+        row2_2 = AnchorLayout(anchor_y="top")
+
+#adding a from units drop down
+        self.ToUnits = DropDown()
+#adding the main button for the drop down
+        self.toBtn = Button(text = "To", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman",color = [0,0,0,1], font_size =40,size_hint_y=None, height=40)
+        self.toBtn.bind(on_release=self.ToUnits.open)
+#adding the first unit
+        self.unit1 = Button(text = "1", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman",color = [0,0,0,1], font_size =40 ,size_hint_y=None, height=30) 
+        self.unit1.bind(on_release=lambda btn: self.ToUnits.select(self.unit1.text))
+#adding the second unit
+        self.unit2 = Button(text = "2", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman",color = [0,0,0,1], font_size =40 ,size_hint_y=None, height=30) 
+        self.unit2.bind(on_release=lambda btn: self.ToUnits.select(self.unit2.text))
+#adding the buttons dropdown
+        self.ToUnits.add_widget(self.unit1)
+        self.ToUnits.add_widget(self.unit2)
+        self.ToUnits.bind(on_select=lambda instance, x: setattr(self.toBtn, 'text', x))
+        
 
 #adding the widgets to the layouts.
-        row2_1.add_widget(self.fromBtn)
+       
         row2.add_widget(self.LabelFrom)
-        
+        row2_1.add_widget(self.fromBtn)
         row2.add_widget(row2_1)
+        row2.add_widget(self.LabelTo)
+        row2_2.add_widget(self.toBtn)
+        row2.add_widget(row2_2)
         self.add_widget(row2)
+
+
+#adding the label for the result
+        row3 = BoxLayout(orientation = "horizontal")
+        self.resultLabel = Label(text="Result", font_name = "Times New Roman", font_size = 60)
+        row3.add_widget(self.resultLabel)
+        self.add_widget(row3)
 
 
 
 
         #adding the final row
-        row4 = BoxLayout(orientation = "horizontal", spacing = "10")
+        row4 = BoxLayout(orientation = "horizontal")
         self.backBtn = Button(text = "Back", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman",color = [0,0,0,1], font_size =40 )
         self.backBtn.bind(on_press=self.back2)
         row4.add_widget(self.backBtn)
