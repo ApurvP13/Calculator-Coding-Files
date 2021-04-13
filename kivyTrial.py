@@ -197,7 +197,7 @@ class ConvertPage(GridLayout):
         row1.add_widget(self.entryText)
         self.add_widget(row1)
 #adding a vertical boxlayout
-        row2 = BoxLayout(orientation = "horizontal")
+        row2 = BoxLayout(orientation = "horizontal", spacing = "10")
         self.LabelFrom = Label(text="From", font_name = "Times New Roman", font_size = 60)
 #adding a anchor layout to anchor the dropdown button to the top.        
         row2_1 = AnchorLayout(anchor_y="top")
@@ -237,7 +237,10 @@ class ConvertPage(GridLayout):
         self.ToUnits.add_widget(self.unit1)
         self.ToUnits.add_widget(self.unit2)
         self.ToUnits.bind(on_select=lambda instance, x: setattr(self.toBtn, 'text', x))
-        
+    
+#adding a convert button
+        self.convert_button = Button(text="Convert", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman", color = [0,0,0,1], font_size =40)
+
 
 #adding the widgets to the layouts.
        
@@ -247,6 +250,7 @@ class ConvertPage(GridLayout):
         row2.add_widget(self.LabelTo)
         row2_2.add_widget(self.toBtn)
         row2.add_widget(row2_2)
+        row2.add_widget(self.convert_button)
         self.add_widget(row2)
 
 
@@ -291,11 +295,12 @@ class AdvCalcPage(GridLayout):
         self.btn1 = Button(text="Result", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman", color = [0,0,0,1], font_size =40)
         self.btn1.bind(on_press=self.WolfResult)
         row2.add_widget(self.btn1)
-        self.add_widget(row2)
+        self.add_widget(row2) 
 
         #adding the result label
         row3 = BoxLayout(orientation = "horizontal")
         self.wolfResult = Label(text="Results will appear here", font_name = "Times New Roman", font_size = 35)
+        #self.wolfResult.bind(width=self.update_text_width)
         row3.add_widget(self.wolfResult)
         self.add_widget(row3)
 
@@ -316,11 +321,13 @@ class AdvCalcPage(GridLayout):
         except:
             answer = "This question is not valid"
             self.wolfResult.text = answer
+        self.wolfResult.text_size = (self.wolfResult.width*0.9, None)
     
     def back2(self, instance):
         self.wolfResult.text = "Results will appear here"
         self.inputText.text = ""
         calc_app.screenmanager.current = "Intro"
+
 
 
 class CalcApp(App):
