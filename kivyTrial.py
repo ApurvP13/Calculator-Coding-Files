@@ -207,11 +207,13 @@ class ConvertPage(GridLayout):
         self.fromBtn = Button(text = "From", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman",color = [0,0,0,1], font_size =40,size_hint_y=None, height=40)
         self.fromBtn.bind(on_release=self.FromUnits.open)
 #adding the first unit
-        self.unit1 = Button(text = "1", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman",color = [0,0,0,1], font_size =40 ,size_hint_y=None, height=30) 
+        self.unit1 = Button(text = "m", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman",color = [0,0,0,1], font_size =40 ,size_hint_y=None, height=30) 
         self.unit1.bind(on_release=lambda btn: self.FromUnits.select(self.unit1.text))
+        self.unit1.bind(on_press = self.meter_unit)
 #adding the second unit
-        self.unit2 = Button(text = "2", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman",color = [0,0,0,1], font_size =40 ,size_hint_y=None, height=30) 
+        self.unit2 = Button(text = "km", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman",color = [0,0,0,1], font_size =40 ,size_hint_y=None, height=30) 
         self.unit2.bind(on_release=lambda btn: self.FromUnits.select(self.unit2.text))
+        self.unit2.bind(on_press = self.km_units)
 #adding the buttons dropdown
         self.FromUnits.add_widget(self.unit1)
         self.FromUnits.add_widget(self.unit2)
@@ -228,14 +230,14 @@ class ConvertPage(GridLayout):
         self.toBtn = Button(text = "To", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman",color = [0,0,0,1], font_size =40,size_hint_y=None, height=40)
         self.toBtn.bind(on_release=self.ToUnits.open)
 #adding the first unit
-        self.unit1 = Button(text = "1", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman",color = [0,0,0,1], font_size =40 ,size_hint_y=None, height=30) 
-        self.unit1.bind(on_release=lambda btn: self.ToUnits.select(self.unit1.text))
+        self.unit2_1 = Button(text = "_", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman",color = [0,0,0,1], font_size =40 ,size_hint_y=None, height=30) 
+        self.unit2_1.bind(on_release=lambda btn: self.ToUnits.select(self.unit2_1.text))
 #adding the second unit
-        self.unit2 = Button(text = "2", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman",color = [0,0,0,1], font_size =40 ,size_hint_y=None, height=30) 
-        self.unit2.bind(on_release=lambda btn: self.ToUnits.select(self.unit2.text))
+        self.unit2_2 = Button(text = "_", background_normal = "", background_color = [255/255, 170/255, 128/255,1.00], font_name = "Times New Roman",color = [0,0,0,1], font_size =40 ,size_hint_y=None, height=30) 
+        self.unit2_2.bind(on_release=lambda btn: self.ToUnits.select(self.unit2_2.text))
 #adding the buttons dropdown
-        self.ToUnits.add_widget(self.unit1)
-        self.ToUnits.add_widget(self.unit2)
+        self.ToUnits.add_widget(self.unit2_1)
+        self.ToUnits.add_widget(self.unit2_2)
         self.ToUnits.bind(on_select=lambda instance, x: setattr(self.toBtn, 'text', x))
     
 #adding a convert button
@@ -272,6 +274,14 @@ class ConvertPage(GridLayout):
     
     def back2(self, instance):
         calc_app.screenmanager.current = "Intro"    
+#adding function to change button names
+    def meter_unit(self, instance):
+        self.unit2_1.text = "km"
+        self.unit2_2.text = "mm"
+    
+    def km_units(self, instance):
+        self.unit2_1.text = "mm"
+        self.unit2_2.text = "m"
 
 #intialising the Advance Calc page that will appear after clicking
 #advance calc button
