@@ -205,14 +205,16 @@ class ConvertPage(GridLayout):
 
         self.range = DropDown()
 
-        self.rangeBtn = Button(text = "Type", background_normal = "", background_color = [153/255,206/255,211/255,1], font_name = "Times New Roman",color = [0,0,0,1], font_size =40,size_hint_y=None, height=40)
+        self.rangeBtn = Button(text = "Type", background_normal = "", background_color = [153/255,206/255,211/255,1], font_name = "Times New Roman",color = [0,0,0,1], font_size =40,size_hint_y=None, height=60)
         self.rangeBtn.bind(on_release=self.range.open)
 
-        self.type1 = Button(text = "Type1", background_normal = "", background_color = [153/255,206/255,211/255,1], font_name = "Times New Roman",color = [0,0,0,1], font_size =40,size_hint_y=None, height=40)
+        self.type1 = Button(text = "length", background_normal = "", background_color = [153/255,206/255,211/255,1], font_name = "Times New Roman",color = [0,0,0,1], font_size =40,size_hint_y=None, height=60)
         self.type1.bind(on_release=lambda btn: self.range.select(self.type1.text))
+        self.type1.bind(on_press = self.length_change)
 
-        self.type2 = Button(text = "Type2", background_normal = "", background_color = [153/255,206/255,211/255,1], font_name = "Times New Roman",color = [0,0,0,1], font_size =40,size_hint_y=None, height=40)
+        self.type2 = Button(text = "Time", background_normal = "", background_color = [153/255,206/255,211/255,1], font_name = "Times New Roman",color = [0,0,0,1], font_size =40,size_hint_y=None, height=60)
         self.type2.bind(on_release=lambda btn: self.range.select(self.type2.text))
+        self.type2.bind(on_press = self.time_change)
 
         self.range.add_widget(self.type1)
         self.range.add_widget(self.type2)
@@ -232,19 +234,29 @@ class ConvertPage(GridLayout):
 #adding a from units drop down
         self.FromUnits = DropDown()
 #adding the main button for the drop down
-        self.fromBtn = Button(text = "From", background_normal = "", background_color = [153/255,206/255,211/255,1], font_name = "Times New Roman",color = [0,0,0,1], font_size =40,size_hint_y=None, height=40)
+        self.fromBtn = Button(text = "From", background_normal = "", background_color = [153/255,206/255,211/255,1], font_name = "Times New Roman",color = [0,0,0,1], font_size =40,size_hint_y=None, height=60)
         self.fromBtn.bind(on_release=self.FromUnits.open)
 #adding the first unit
-        self.unit1 = Button(text = "m", background_normal = "", background_color = [153/255,206/255,211/255,1], font_name = "Times New Roman",color = [0,0,0,1], font_size =40 ,size_hint_y=None, height=30) 
-        self.unit1.bind(on_release=lambda btn: self.FromUnits.select(self.unit1.text))
-        self.unit1.bind(on_press = self.meter_unit)
+        self.unit1_1 = Button(text = "_", background_normal = "", background_color = [153/255,206/255,211/255,1], font_name = "Times New Roman",color = [0,0,0,1], font_size =40 ,size_hint_y=None, height=50) 
+        self.unit1_1.bind(on_release=lambda btn: self.FromUnits.select(self.unit1_1.text))
+        #self.unit1_1.bind(on_press = self.meter_unit)
 #adding the second unit
-        self.unit2 = Button(text = "km", background_normal = "", background_color = [153/255,206/255,211/255,1], font_name = "Times New Roman",color = [0,0,0,1], font_size =40 ,size_hint_y=None, height=30) 
-        self.unit2.bind(on_release=lambda btn: self.FromUnits.select(self.unit2.text))
-        self.unit2.bind(on_press = self.km_units)
+        self.unit1_2 = Button(text = "_", background_normal = "", background_color = [153/255,206/255,211/255,1], font_name = "Times New Roman",color = [0,0,0,1], font_size =40 ,size_hint_y=None, height=50) 
+        self.unit1_2.bind(on_release=lambda btn: self.FromUnits.select(self.unit1_2.text))
+        #self.unit1_2.bind(on_press = self.km_units)
+        
+#adding the third unit
+        self.unit1_3 = Button(text = "_", background_normal = "", background_color = [153/255,206/255,211/255,1], font_name = "Times New Roman",color = [0,0,0,1], font_size =40 ,size_hint_y=None, height=50) 
+        self.unit1_3.bind(on_release=lambda btn: self.FromUnits.select(self.unit1_3.text))
+
+#adding the third unit
+        self.unit1_4 = Button(text = "_", background_normal = "", background_color = [153/255,206/255,211/255,1], font_name = "Times New Roman",color = [0,0,0,1], font_size =40 ,size_hint_y=None, height=50) 
+        self.unit1_4.bind(on_release=lambda btn: self.FromUnits.select(self.unit1_4.text))
 #adding the buttons dropdown
-        self.FromUnits.add_widget(self.unit1)
-        self.FromUnits.add_widget(self.unit2)
+        self.FromUnits.add_widget(self.unit1_1)
+        self.FromUnits.add_widget(self.unit1_2)
+        self.FromUnits.add_widget(self.unit1_3)
+        self.FromUnits.add_widget(self.unit1_4)
         self.FromUnits.bind(on_select=lambda instance, x: setattr(self.fromBtn, 'text', x))
 #adding the to label
         self.LabelTo = Label(text="To", font_name = "Times New Roman", font_size = 60, color = [0,0,0,1])
@@ -255,22 +267,32 @@ class ConvertPage(GridLayout):
 #adding a from units drop down
         self.ToUnits = DropDown()
 #adding the main button for the drop down
-        self.toBtn = Button(text = "To", background_normal = "", background_color = [153/255,206/255,211/255,1], font_name = "Times New Roman",color = [0,0,0,1], font_size =40,size_hint_y=None, height=40)
+        self.toBtn = Button(text = "To", background_normal = "", background_color = [153/255,206/255,211/255,1], font_name = "Times New Roman",color = [0,0,0,1], font_size =40,size_hint_y=None, height=60)
         self.toBtn.bind(on_release=self.ToUnits.open)
 #adding the first unit
-        self.unit2_1 = Button(text = "_", background_normal = "", background_color = [153/255,206/255,211/255,1], font_name = "Times New Roman",color = [0,0,0,1], font_size =40 ,size_hint_y=None, height=30) 
+        self.unit2_1 = Button(text = "_", background_normal = "", background_color = [153/255,206/255,211/255,1], font_name = "Times New Roman",color = [0,0,0,1], font_size =40 ,size_hint_y=None, height=50) 
         self.unit2_1.bind(on_release=lambda btn: self.ToUnits.select(self.unit2_1.text))
 #adding the second unit
-        self.unit2_2 = Button(text = "_", background_normal = "", background_color = [153/255,206/255,211/255,1], font_name = "Times New Roman",color = [0,0,0,1], font_size =40 ,size_hint_y=None, height=30) 
+        self.unit2_2 = Button(text = "_", background_normal = "", background_color = [153/255,206/255,211/255,1], font_name = "Times New Roman",color = [0,0,0,1], font_size =40 ,size_hint_y=None, height=50) 
         self.unit2_2.bind(on_release=lambda btn: self.ToUnits.select(self.unit2_2.text))
+
+#adding the third unit
+        self.unit2_3 = Button(text = "_", background_normal = "", background_color = [153/255,206/255,211/255,1], font_name = "Times New Roman",color = [0,0,0,1], font_size =40 ,size_hint_y=None, height=50) 
+        self.unit2_3.bind(on_release=lambda btn: self.ToUnits.select(self.unit2_3.text))
+
+#adding the third unit
+        self.unit2_4 = Button(text = "_", background_normal = "", background_color = [153/255,206/255,211/255,1], font_name = "Times New Roman",color = [0,0,0,1], font_size =40 ,size_hint_y=None, height=50) 
+        self.unit2_4.bind(on_release=lambda btn: self.ToUnits.select(self.unit2_4.text))
 #adding the buttons dropdown
         self.ToUnits.add_widget(self.unit2_1)
         self.ToUnits.add_widget(self.unit2_2)
+        self.ToUnits.add_widget(self.unit2_3)
+        self.ToUnits.add_widget(self.unit2_4)
         self.ToUnits.bind(on_select=lambda instance, x: setattr(self.toBtn, 'text', x))
     
 #adding a convert button
         self.convert_button = Button(text="Convert", background_normal = "", background_color = [153/255,206/255,211/255,1], font_name = "Times New Roman", color = [0,0,0,1], font_size =40)
-
+        self.convert_button.bind(on_press = self.conversion)
 
 #adding the widgets to the layouts.
        
@@ -301,15 +323,55 @@ class ConvertPage(GridLayout):
         self.add_widget(row4)
     
     def back2(self, instance):
+        self.resultLabel.text = "Result"
+        self.entryText.text = ""
         calc_app.screenmanager.current = "Intro"    
 #adding function to change button names
-    def meter_unit(self, instance):
-        self.unit2_1.text = "km"
-        self.unit2_2.text = "mm"
     
     def km_units(self, instance):
         self.unit2_1.text = "mm"
         self.unit2_2.text = "m"
+
+    def length_change(self,instance):
+        self.unit1_1.text = "mm"
+        self.unit1_2.text = "cm"
+        self.unit1_3.text = "m"
+        self.unit1_4.text = "Km"
+
+        self.unit2_1.text = "mm"
+        self.unit2_2.text = "cm"
+        self.unit2_3.text = "m"
+        self.unit2_4.text = "km"
+    
+    def time_change(self,instance):
+        self.unit1_1.text = "ms"
+        self.unit1_2.text = "s"
+        self.unit1_3.text = "min"
+        self.unit1_4.text = "hrs"
+
+        self.unit2_1.text = "ms"
+        self.unit2_2.text = "s"
+        self.unit2_3.text = "min"
+        self.unit2_4.text = "hrs"
+
+    def conversion(self, instance):
+        conversions = {
+                "mm": {"mm": 1, "cm": 1/10, "m": 1/1000, "km": 1/1000000},
+                "cm": {"mm": 10, "cm": 1, "m": 1/100, "km": 1/100000},
+                "m":  {"mm": 1000, "cm": 100, "m": 1, "km": 1/1000},
+                "km": {"mm": 100000, "cm": 10000, "m": 1000, "km": 1},
+                "ms": {"ms": 1, "s" : 1/1000, "min" : 1/60000, "hrs": 1/36000000},
+                "s" : {"ms": 1000, "s" : 1, "min" : 1/60, "hrs": 1/3600},
+                "min": {"ms": 60000, "s" : 60, "min" : 1, "hrs": 1/60},
+                "hrs" : {"ms": 3600000, "s" : 3600, "min" : 60, "hrs": 1},
+              }
+        
+        try: 
+            convert = conversions[self.fromBtn.text][self.toBtn.text]
+        except KeyError:
+            self.resultLabel.text = "Pls enter a valid conversion"
+        
+        self.resultLabel.text = str(int(self.entryText.text)*convert)
 
 #intialising the Advance Calc page that will appear after clicking
 #advance calc button
