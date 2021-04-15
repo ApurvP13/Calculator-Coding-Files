@@ -216,8 +216,18 @@ class ConvertPage(GridLayout):
         self.type2.bind(on_release=lambda btn: self.range.select(self.type2.text))
         self.type2.bind(on_press = self.time_change)
 
+        self.type3 = Button(text = "Weight", background_normal = "", background_color = [153/255,206/255,211/255,1], font_name = "Times New Roman",color = [0,0,0,1], font_size =40,size_hint_y=None, height=60)
+        self.type3.bind(on_release=lambda btn: self.range.select(self.type3.text))
+        self.type3.bind(on_press = self.weight_change)
+
+        self.type4 = Button(text = "Temperature", background_normal = "", background_color = [153/255,206/255,211/255,1], font_name = "Times New Roman",color = [0,0,0,1], font_size =40,size_hint_y=None, height=60)
+        self.type4.bind(on_release=lambda btn: self.range.select(self.type4.text))
+        self.type4.bind(on_press = self.temp_change)
+
         self.range.add_widget(self.type1)
         self.range.add_widget(self.type2)
+        self.range.add_widget(self.type3)
+        self.range.add_widget(self.type4)
         self.range.bind(on_select=lambda instance, x: setattr(self.rangeBtn, 'text', x))
         
         row1_2.add_widget(self.rangeBtn)
@@ -354,6 +364,28 @@ class ConvertPage(GridLayout):
         self.unit2_3.text = "min"
         self.unit2_4.text = "hrs"
 
+    def weight_change(self,instance):
+        self.unit1_1.text = "mg"
+        self.unit1_2.text = "g"
+        self.unit1_3.text = "Kg"
+        self.unit1_4.text = "Ton"
+
+        self.unit2_1.text = "mg"
+        self.unit2_2.text = "g"
+        self.unit2_3.text = "Kg"
+        self.unit2_4.text = "Ton"
+
+    def temp_change(self, instance):
+        self.unit1_1.text = "Kelvin"
+        self.unit1_2.text = "Celsius"
+        self.unit1_3.text = "Fahrenheit"
+        self.unit1_4.text = "_"
+
+        self.unit2_1.text = "Kelvin"
+        self.unit2_2.text = "Celsius"
+        self.unit2_3.text = "Fahrenheit"
+        self.unit2_4.text = "_"
+
     def conversion(self, instance):
         conversions = {
                 "mm": {"mm": 1, "cm": 1/10, "m": 1/1000, "km": 1/1000000},
@@ -364,14 +396,35 @@ class ConvertPage(GridLayout):
                 "s" : {"ms": 1000, "s" : 1, "min" : 1/60, "hrs": 1/3600},
                 "min": {"ms": 60000, "s" : 60, "min" : 1, "hrs": 1/60},
                 "hrs" : {"ms": 3600000, "s" : 3600, "min" : 60, "hrs": 1},
+                "mg" : {"mg" : 1, "g" : 1/1000, "Kg" : 1/1000000, "Ton" : 1/1000000000},
+                "g" : {"mg" : 1000, "g" : 1, "Kg" : 1/1000, "Ton" : 1/1000000},
+                "Kg" : {"mg" : 1000000, "g" : 1000, "Kg" : 1, "Ton" : 1/1000},
+                "Ton" : {"mg" : 1000000000, "g" : 1000000, "Kg" : 1000, "Ton" : 1},
+                "Kelvin" : {"Kelvin" : 1},
+                "Celsius" : {"Celsius" : 1},
+                "Fahrenheit" : {"Fahrenheit" : 1},
               }
         
         try: 
-            convert = conversions[self.fromBtn.text][self.toBtn.text]
+            if self.fromBtn.text == "Kelvin" and self.toBtn.text == "Celsius":
+                self.resultLabel.text = str(int(self.entryText.text) - 273.15)
+            elif self.fromBtn.text == "Kelvin" and self.toBtn.text == "Fahrenheit":
+                self.resultLabel.text = str((int(self.entryText.text) - 273.15)*(9/5) + 32)
+            elif self.fromBtn.text == "Celsius" and self.toBtn.text == "Fahrenheit":
+                self.resultLabel.text = str(int(self.entryText.text)*(9/5) + 32)
+            elif self.fromBtn.text == "Celsius" and self.toBtn.text == "Kelvin":
+                self.resultLabel.text = str(int(self.entryText.text) + 273.15)
+            elif self.fromBtn.text == "Fahrenheit" and self.toBtn.text == "Kelvin":
+                self.resultLabel.text = str(((int(self.entryText.text) - 32)*(5/9) + 273.15))
+            elif self.fromBtn.text == "Fahrenheit" and self.toBtn.text == "Celsius":
+                self.resultLabel.text = str((int(self.entryText.text) - 32)*(5/9))
+            else:
+                convert = conversions[self.fromBtn.text][self.toBtn.text]
+                self.resultLabel.text = str(int(self.entryText.text)*convert)
         except KeyError:
             self.resultLabel.text = "Pls enter a valid conversion"
         
-        self.resultLabel.text = str(int(self.entryText.text)*convert)
+        #self.resultLabel.text = str(int(self.entryText.text)*convert)
 
 #intialising the Advance Calc page that will appear after clicking
 #advance calc button
